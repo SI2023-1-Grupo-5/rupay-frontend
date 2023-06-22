@@ -1,34 +1,61 @@
-import "./HomePage.css";
+import { AppBar, Avatar, Box, Button, Container, Grid, IconButton, Toolbar, Typography } from '@mui/material';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+// import './App.css';
 
-const HomePage = () => {
-
-  const handleCredit = (event) => {};
-
-  const handleConsultMenu = (event) => {};
-
-  const handleExit = (event) => {};
-
+function App() {
   return (
-    <div className="Container">
-      <div
-        style={{ backgroundColor: "#044569", padding: "20px", width: "300px" }}
+    <div className="App">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="Voltar"
+              sx={{ mr: 2 }}
+            >
+              <KeyboardBackspaceIcon  fontSize='large'/>
+            </IconButton>
+            <Avatar src='/public/Rectangle.svg'/>
+            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+              RUpay
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <Grid 
+        container
+        spacing={2}
+        justifyContent="center"
+        alignItems="center"
       >
-        <h1 style={{ color: "white", textAlign: "center" }}>Olá Felps</h1>
-        <h2 style={{ color: "white", textAlign: "center" }}>Seu saldo é 25.00</h2>
-          <div>
-            <button className="" onClick={handleCredit}>Colocar créditos</button>
-          </div>
-          <div>
-            <button className="" onClick={handleConsultMenu}>Consultar cardápio</button>
-          </div>
-          <div>
-            <button className="SubmitButton" onClick={handleExit}>
-              Sair
-            </button>
-          </div>
-      </div>
+        <Box sx={{p:2}}/>
+        <Grid item xs={12}>
+          <Typography color='#fff' variant='h4' component='h1'>
+            Ola, Fernanda!
+          </Typography>
+          <Box sx={{p:2}}/>
+          <Typography color='#fff' variant='h6' component='div'>
+            Seu saldo é:
+          </Typography>
+          <Typography color='#fff' variant='h2' component='div'>
+            R$ 54,60
+          </Typography>
+          <Box sx={{p:2}}/>
+        </Grid>
+        <Grid item xs={7}>
+          <Button color='secondary' fullWidth size='large' variant='contained'>Colocar Créditos</Button>
+        </Grid>
+        <Grid item xs={7}>
+          <Button color='secondary' fullWidth size='large' variant='contained'>Consultar cardápios</Button>
+        </Grid>
+        <Grid item xs={7}>
+          <Button color='secondary' fullWidth size='large' variant='contained' >Sair</Button>
+        </Grid>
+      </Grid>
     </div>
   );
-};
+}
 
-export default HomePage;
+export default App;

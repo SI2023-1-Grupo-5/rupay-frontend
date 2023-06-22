@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
+import { TextField, Box, Button, Grid } from "@mui/material";
 
 const LoginPage = () => {
   const [registration, setRegistration] = useState("");
@@ -18,38 +19,41 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="Container">
-      <div
-        style={{ backgroundColor: "#044569", padding: "20px", width: "300px" }}
+    <Grid 
+        container
+        spacing={2}
+        justifyContent="center"
+        alignItems="center"
+        direction="column"
       >
-        <h1 style={{ color: "white", textAlign: "center" }}>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <div>
-              <label className="Button">Matrícula:</label>
-              <input
-                type="text"
-                value={registration}
-                onChange={handleRegistrationChange}
-                required
-              />
-            </div>
-            <div>
-              <label className="Button">Senha:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-            </div>
-            <button type="submit" className="SubmitButton">
-              Entrar
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+        <Box
+      direction="column"
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField
+          id="outlined-password-input"
+          label="Matrícula"
+          autoComplete="current-password"
+        />
+      <TextField
+          id="outlined-password-input"
+          label="Senha"
+          type="password"
+          autoComplete="current-password"
+        />
+      <Button color="secondary" variant="contained">Entrar</Button>
+
+    </Box>
+
+    </Grid>
+    
+  
+    
   );
 };
 
