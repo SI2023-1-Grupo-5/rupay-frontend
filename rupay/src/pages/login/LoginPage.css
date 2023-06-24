@@ -1,0 +1,25 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: '100vh';
+}
+
+.ContainerExternal {
+    background-color: '#044569';
+    padding: '20px'; 
+    width: '300px'; 
+}
+
+.Button {
+    color: white;
+    width: '100%';
+}
+
+.SubmitButton {
+    background-color: #46B9F9;
+    color: white;
+    padding: '10px';
+    width: '100%';
+}
+/* style={{ backgroundColor: '#46B9F9', color: 'white', padding: '10px', width: '100%' }} */
