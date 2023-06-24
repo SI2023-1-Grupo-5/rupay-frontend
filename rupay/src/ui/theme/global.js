@@ -11,9 +11,11 @@ export const GlobalStyle = createGlobalStyle`
 
 /* font sizes */
 --font-size-7xl: 26px;
---font-size-2xs: 11px;
---font-size-base: 16px;
 --font-size-16xl: 35px;
+--font-size-sm: 14px;
+--font-size-base: 16px;
+--font-size-12xl: 31px;
+--font-size-2xs: 11px;
 
 /* Colors */
 --color-darkslategray: #044569;
