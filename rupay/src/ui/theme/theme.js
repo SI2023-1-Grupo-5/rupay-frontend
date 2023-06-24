@@ -12,11 +12,11 @@ const theme = createTheme({
     },
     error: {
       main: red.A700,
-    },
-    background:{
-      paper:'#fff',
-      default:'#044569'
-    },
+    }
+    // background:{
+    //   paper:'#fff',
+    //   default:'#044569'
+    // },
   },
 });
 

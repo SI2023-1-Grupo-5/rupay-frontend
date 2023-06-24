@@ -19,41 +19,41 @@ const LoginPage = () => {
   };
 
   return (
-    <Grid 
-        container
-        spacing={2}
-        justifyContent="center"
-        alignItems="center"
-        direction="column"
-      >
-        <Box
-      direction="column"
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField
-          id="outlined-password-input"
-          label="Matrícula"
-          autoComplete="current-password"
-        />
-      <TextField
-          id="outlined-password-input"
-          label="Senha"
-          type="password"
-          autoComplete="current-password"
-        />
-      <Button color="secondary" variant="contained">Entrar</Button>
-
-    </Box>
-
-    </Grid>
-    
-  
-    
+      <Grid 
+          container
+          spacing={2}
+          xs={12}
+          justifyContent="center"
+          alignItems="center"
+          direction="column"
+        >
+          <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+              id="outlined-password-input"
+              label="Matrícula"
+              autoComplete="current-password"
+            />
+          <TextField
+              id="outlined-password-input"
+              label="Senha"
+              type="password"
+              autoComplete="current-password"
+            />
+          <Button 
+            color="secondary"
+            variant="contained"
+          >
+            Entrar
+          </Button>
+        </Box>
+      </Grid>
   );
 };
 
