@@ -1,13 +1,13 @@
-import './App.css';
-import HomePage from './pages/home/HomePage';
+import MakeComment from './pages/comment/MakeComment';
 import PaginaInicial from './pages/home/PaginaInicial';
-import LoginPage from './pages/login/LoginPage';
 import Login from './pages/login/login';
+import Menu from './pages/menu/Menu';
+import Select_menu from './pages/menu/Select_menu';
 
 
 function App() {
   return (
-    <PaginaInicial/>
+    <MakeComment/>
   );
 }
 
