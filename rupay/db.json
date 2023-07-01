@@ -1,0 +1,77 @@
+{
+  "login": [
+    {
+      "id": 1,
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibWF0cmljdWxhIjoiMTYwMTM3NzA1Iiwic2VuaGEiOiIxMjM0NTY3ODkifQ.NYdyi0kZXgXXjUOu6hK4RJl5QvWVtAgit4qyn_xyMc0",
+      "user": {
+        "id": 1,
+        "nome": "Mateus"
+      }
+    },
+    {
+      "id": 2,
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibWF0cmljdWxhIjoiMTYwMTM3NzA1Iiwic2VuaGEiOiIxMjM0NTY3ODkifQ.NYdyi0kZXgXXjUOu6hK4RJl5QvWVtAgit4qyn_xyMc7",
+      "user": {
+        "id": 2,
+        "nome": "Laisla"
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Mateus",
+      "balance": 32.5,
+      "collegeId": "160137705",
+      "password": "123456789",
+      "email": "mateus@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Laisla",
+      "balance": 50,
+      "collegeId": "160137706",
+      "password": "123456789",
+      "email": "laisla@gmail.com"
+    },
+    {
+      "balance": 0,
+      "name": "João",
+      "email": "joao@gmail.com",
+      "collegeId": "160137709",
+      "password": "123456789",
+      "password_confirm": "123456789",
+      "id": 3
+    },
+    {
+      "balance": 0,
+      "name": "Pedro",
+      "email": "pedro@gmail.com",
+      "collegeId": "160137702",
+      "password": "123456789",
+      "password_confirm": "123456789",
+      "id": 4
+    },
+    {
+      "balance": 0,
+      "name": "Pedro",
+      "email": "pedro@gmail.com",
+      "collegeId": "160137701",
+      "password": "123456789",
+      "password_confirm": "123456789",
+      "id": 5
+    },
+    {
+      "balance": 0,
+      "name": "Mateus",
+      "email": "mateus@gmail.com",
+      "collegeId": "160137705",
+      "password": "123456789",
+      "password_confirm": "123456789",
+      "id": 6
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
