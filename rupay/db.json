@@ -69,9 +69,19 @@
       "password": "123456789",
       "password_confirm": "123456789",
       "id": 6
+    },
+    {
+      "balance": "0",
+      "name": "123456789",
+      "email": "123456789@gmail.com",
+      "collegeId": "123456789",
+      "password": "123456789",
+      "password_confirm": "123456789",
+      "id": 7
     }
   ],
-  "profile": {
-    "name": "typicode"
+  "access": {
+    "code": "123456789",
+    "collegeId": "123456789"
   }
 }

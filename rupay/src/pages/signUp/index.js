@@ -6,6 +6,8 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import { api } from '@/services/axiosClient';
 import { Router, useRouter } from 'next/router';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { setCookie } from 'nookies';
 
 const creatUserSchema = z.object({
     name: z.string().nonempty("O nome é obrigatorio"),
@@ -22,22 +24,37 @@ export default function SingUp() {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(creatUserSchema)
     })
-    const[erro,setErro] = useState(false)
     const userouter = useRouter()
 
     async function userCadrastro(event) {
-        try{
-            // api.post('/users', {
-            //     "balance": 0,
-            //     ...event
-            // })
-            await api.get('/users'+9)
-        }catch(error){
-            console.error(error)
-            setErro(true)
-        }
-        if(!erro){
-            userouter.push('/signUp/verifyCode')
+            const data = await api.post('/users', {
+                "balance": "0",
+                ...event
+            })
+            .then((r) => {
+                toast.success("Usuario cadastrado com sucesso",{
+                    position:"bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                })
+                return r.data
+            }).catch((e) => {
+                toast.error("Erro ao cadastrar usuario",{
+                    position:"bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+            })})
+        if(data){
+            setCookie(undefined, 'matricula.token', event.collegeId, {
+                maxAge: 60 * 10 * 1, // 10 m
+            })
+            userouter.push('/signUp/verifyCode/')
         }
     }
 

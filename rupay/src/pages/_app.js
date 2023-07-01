@@ -7,6 +7,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -15,6 +17,7 @@ export default function App({ Component, pageProps:{ session, ...pageProps } }) 
     <AuthProvider>
       <ThemeProvider theme={theme}>
         <GlobalStyle/>
+        <ToastContainer/>
         <Component {...pageProps} />
       </ThemeProvider>
     </AuthProvider>

@@ -3,6 +3,10 @@ import { ButtonConfirm, InputCode, ButtonBack, Form, DigiteOCdigo, HeadChild, Ru
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { parseCookies } from "nookies";
+import { api } from "@/services/axiosClient";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 
 const creatcodeSchema = z.object({
@@ -10,12 +14,37 @@ const creatcodeSchema = z.object({
 })
 
 export default function VerifyCode() {
+    const userouter = useRouter()
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(creatcodeSchema)
     })
 
     async function userVerficarCodigo(event) {
-        console.log(event)
+        const {['matricula.token']: token}= parseCookies()
+        const data = await api.get('/access?collegeId='+ token +'&code='+event.codigo)
+        .then((r) => {
+            toast.success("Usuario verificado com sucesso",{
+                position:"bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            })
+            return r.data
+        }).catch((e) => {
+            toast.error("Erro ao verificar o usuario",{
+                position:"bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+        })})
+    if(data){
+        destroyCookie(undefined, 'matricula.token')
+        userouter.push('/login')
+    }
     }
 
     return (
