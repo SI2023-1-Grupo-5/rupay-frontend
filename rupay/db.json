@@ -83,5 +83,25 @@
   "access": {
     "code": "123456789",
     "collegeId": "123456789"
-  }
+  },
+  "menu": [{
+    "id": 1,
+    "name": "Darcy Ribeiro",
+    "link": "https://ru.unb.br/images/Artigos/ISMCARDAPIOSDRU2023/06JUNHO2023/Darcy_Ribeiro_-_Semana_03_-26-06__a_02-07.pdf"
+  },
+  {
+    "id": 2,
+    "name": "Ceilândia",
+    "link": "https://ru.unb.br/images/Artigos/ISMCARDAPIOSDRU2023/06JUNHO2023/Ceilndia-_Semana_03_-26-06__a_02-07.pdf"
+  },
+  {
+    "id": 3,
+    "name": "Gama",
+    "link": "https://ru.unb.br/images/Artigos/ISMCARDAPIOSDRU2023/06JUNHO2023/Gama-_Semana_03_-26-06__a_02-07.pdf"
+  },
+  {
+    "id": 4,
+    "name": "Planaltina",
+    "link": "https://ru.unb.br/images/Artigos/ISMCARDAPIOSDRU2023/06JUNHO2023/Planaltina_-_Semana_03_-26-06__a_02-07.pdf"
+  }]
 }

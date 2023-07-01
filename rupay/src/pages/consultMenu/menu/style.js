@@ -18,7 +18,7 @@ const ButtonBack = styled(KeyboardBackspaceIcon)`
 `;
 
 const Cardapio = styled('img')`
-    margin-top: 150px;
+    margin-top: 50px;
     display: inline-block;
     width: 305px;
     height: 216px;
@@ -70,4 +70,10 @@ const AlignButtons = styled('div')`
     gap: 20px;
 `
 
-export {CardpioRoot, Head, HeadChild, Rupay, Cardapio, ButtonBaixar, ButtonComentar, ButtonComentarios, ButtonBack,AlignButtons}
+const Title = styled('h1')`
+  font-size:40px;
+  margin-top: 50px;
+`
+
+
+export {CardpioRoot, Head, HeadChild, Rupay, Cardapio, ButtonBaixar, ButtonComentar, ButtonComentarios, ButtonBack,AlignButtons,Title}

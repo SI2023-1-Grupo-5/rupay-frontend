@@ -3,7 +3,7 @@ import { ButtonConfirm, InputCode, ButtonBack, Form, DigiteOCdigo, HeadChild, Ru
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { parseCookies } from "nookies";
+import { destroyCookie, parseCookies } from "nookies";
 import { api } from "@/services/axiosClient";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
