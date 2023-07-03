@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import {CadastroRoot, Head, HeadChild, Rupay, CrieSuaConta, Form, InsiraSuaMatrcula, InsiraUmaSenha, InsiraASenha, InputMatricula, InputSenha1, InputSenha, ButtonCadastrar, ButtonBack, SenhasDiferentes} from './style'
+import {CadastroRoot, Head, HeadChild, Rupay, CrieSuaConta, Form, InputMatricula, InputSenha1, InputSenha, ButtonCadastrar, ButtonBack, SenhasDiferentes} from './style'
 import { useForm } from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod'
 import { api } from '@/services/axiosClient';
-import { Router, useRouter } from 'next/router';
-import { useState } from 'react';
+import {useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { setCookie } from 'nookies';
 
