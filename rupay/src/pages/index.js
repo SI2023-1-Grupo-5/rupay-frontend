@@ -57,26 +57,26 @@ export default function Home({res}) {
 };
 
 
-export async function getServerSideProps(ctx){
-  const {['RUpay.token']: token} = parseCookies(ctx)
+// export async function getServerSideProps(ctx){
+//   const {['RUpay.token']: token} = parseCookies(ctx)
   
-  if(!token){
-    return{
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      }
-    }
-  }
+//   if(!token){
+//     return{
+//       redirect: {
+//         destination: '/login',
+//         permanent: false,
+//       }
+//     }
+//   }
 
-  const {sub} = jwt_decode(token)
-  const {college_id} = sub
+//   const {sub} = jwt_decode(token)
+//   const {college_id} = sub
 
-  const data = await api.get('/user/'+ college_id).catch(err => console.log(err));
-  console.log(data)
-  const res = data[0]
+//   const data = await api.get('/user/'+ college_id).catch(err => console.log(err));
+//   console.log(data)
+//   const res = data[0]
 
-  return	{
-    props: {res}
-  }
-}
+//   return	{
+//     props: {res}
+//   }
+// }
