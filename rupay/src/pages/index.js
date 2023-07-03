@@ -69,9 +69,11 @@ export async function getServerSideProps(ctx){
     }
   }
 
-  const {matricula} = jwt_decode(token)
+  const {sub} = jwt_decode(token)
+  const {college_id} = sub
 
-  const {data} = await api.get('/users?collegeId='+ matricula).catch(err => console.log(err));
+  const data = await api.get('/user/'+ college_id).catch(err => console.log(err));
+  console.log(data)
   const res = data[0]
 
   return	{

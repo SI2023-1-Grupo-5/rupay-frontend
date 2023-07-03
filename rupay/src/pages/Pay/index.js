@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { InputAdornment } from '@mui/material';
+import Link from 'next/link';
 
 const creatUserSchema = z.object({
     valor: z.string().nonempty("O valor é obrigatorio").min(1, "O valor deve ser maior que 0"),
@@ -29,7 +30,9 @@ const creatUserSchema = z.object({
     return(
         <Container>
             <Head>
-            <ButtonBack fontSize="large"/>
+            <Link href={'/'}>
+                <ButtonBack fontSize="large"/>
+            </Link>
             <LogoRupayIcon alt="logo" src="/logo_rupay.svg" />
             <Rupay>RUPay</Rupay>
             </Head>

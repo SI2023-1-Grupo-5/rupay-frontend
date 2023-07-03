@@ -11,7 +11,7 @@ import { setCookie } from 'nookies';
 const creatUserSchema = z.object({
     name: z.string().nonempty("O nome é obrigatorio"),
     email: z.string().nonempty("O email é obrigatorio").email("O email deve ser valido"),
-    collegeId: z.string().nonempty("A matrícula é obrigatoria").min(9, "A matrícula deve ter 9 caracteres"),
+    college_id: z.string().nonempty("A matrícula é obrigatoria").min(9, "A matrícula deve ter 9 caracteres"),
     password: z.string().nonempty("A senha é obrigatoria").min(8, "A senha deve ter no minimo 8 caracteres"),
     password_confirm: z.string().nonempty("A senha é obrigatoria").min(8, "A senha deve ter no minimo 8 caracteres"),
 }).refine((data) => data.senha === data.senha_confirmacao, {
@@ -26,9 +26,11 @@ export default function SingUp() {
     const userouter = useRouter()
 
     async function userCadrastro(event) {
-            const data = await api.post('/users', {
-                "balance": "0",
-                ...event
+            const {college_id, password, name} = event
+            const data = await api.post('/user', {
+                college_id,
+                password,
+                name
             })
             .then((r) => {
                 toast.success("Usuario cadastrado com sucesso",{
@@ -96,12 +98,12 @@ export default function SingUp() {
                     fullWidth
                     color="secondary"
                     variant="outlined"
-                    type="number"
+                    type='text'
                     label="Insira sua matricula"
                     size="large"
                     error={!!errors.collegeId}
                     helperText={errors?.collegeId?.message}
-                    {...register('collegeId')}
+                    {...register('college_id')}
                 />
                 <InputSenha1
                     fullWidth
