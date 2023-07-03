@@ -1,4 +1,4 @@
-const { styled } = require("@mui/material");
+const { styled, TextField, Button, Input } = require("@mui/material");
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 
@@ -56,4 +56,23 @@ font-family: inherit;
 margin-top: 100px;
 `;
 
-export { Container, Rupay, ButtonBack, LogoRupayIcon, Head, Mensagem }
+const InputValor = styled(Input)`
+  border: none;
+  border-radius: 7px;
+`;
+
+const ButtonPay = styled(Button)`
+  background-color:var(--color-steelblue) !important;
+  margin-top: 13px;
+`;
+
+const FormPay = styled('form')`
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+
+
+export { Container, Rupay, ButtonBack, LogoRupayIcon, Head, Mensagem, InputValor, ButtonPay, FormPay }
