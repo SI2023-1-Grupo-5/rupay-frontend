@@ -17,7 +17,15 @@ export default function MakeComment(){
 })
 
 async function makeComment(event) {
-    console.log(event)
+    const {['RUpay.token']: token} = parseCookies(ctx)
+    const {matricula} = jwt_decode(token)
+  
+    const  {stars, comentario} = event
+    const data = await api.post('/comment', {
+        "content": comentario,
+        "rating": stars,
+        "user_college_id": matricula
+    })
 }
 
   return (
