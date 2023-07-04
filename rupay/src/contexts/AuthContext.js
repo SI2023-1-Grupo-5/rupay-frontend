@@ -19,13 +19,10 @@ export function AuthProvider({ children }) {
         const data = await api.post('/auth/login',{
             college_id: matricula,
             password: senha
-        }).then(response => response.data).catch(err => console.log(err));
-
-        if(data?.token){
-            setCookie(undefined, 'RUpay.token', data.token, {
-                maxAge: 60 * 60 * 1, // 1 hour
-            })
-            api.defaults.headers['Authorization'] = `Bearer ${data.token}`
+        }).then().catch(err => console.log(err));
+        console.log(data)
+        if(data.status === 200){
+            setCookie(undefined, 'session', data.data)
             Router.push('/')
         }else{
             alert('Matricula ou senha inválida')
