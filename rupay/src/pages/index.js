@@ -3,13 +3,23 @@ import {ButtonColocar, ButtonConsultar, ButtonSair, NomeUsuario, SeuSaldo, Valor
 import { parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
 import { api } from "@/services/axiosClient";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
+import { getApiClient } from "@/services/axiosServer";
 
 
 
 export default function Home({res}) {
   const {logout} = useContext(AuthContext)
+  // const {['session']: token} = parseCookies()
+  // useEffect(() => {
+  //   const {sub} = jwt_decode(token)
+  //   const {college_id} = sub
+  
+  //   const data =  api.get('/user/'+ college_id).then(response => response.json()).catch(err => console.log(err));
+
+
+  // }, []);
  
   return (
     <PginaInicialRoot>
@@ -57,26 +67,29 @@ export default function Home({res}) {
 };
 
 
-// export async function getServerSideProps(ctx){
-//   const {['RUpay.token']: token} = parseCookies(ctx)
+export async function getServerSideProps(ctx){
+  const {['session']: token} = parseCookies(ctx)
+  const apiClient = getApiClient(ctx)
+
   
-//   if(!token){
-//     return{
-//       redirect: {
-//         destination: '/login',
-//         permanent: false,
-//       }
-//     }
-//   }
+  if(!token){
+    return{
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+  }
+  
+  const {sub} = jwt_decode(token)
+  const {college_id} = sub
+    
+  const data = await apiClient.get('/user/'+ college_id).then(response => response.json()).catch(err => console.log(err));
 
-//   const {sub} = jwt_decode(token)
-//   const {college_id} = sub
 
-//   const data = await api.get('/user/'+ college_id).catch(err => console.log(err));
-//   console.log(data)
-//   const res = data[0]
-
-//   return	{
-//     props: {res}
-//   }
-// }
+  // const res = data
+  // console.log(res)
+  return	{
+    props: {}
+  }
+}

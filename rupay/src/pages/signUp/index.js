@@ -27,7 +27,7 @@ export default function SingUp() {
 
     async function userCadrastro(event) {
             const {college_id, password, name} = event
-            const data = await api.post('/user', {
+            const data = await api.post('/auth/register', {
                 college_id,
                 password,
                 name
@@ -52,7 +52,7 @@ export default function SingUp() {
                     draggable: true,
             })})
         if(data){
-            setCookie(undefined, 'matricula.token', event.collegeId, {
+            setCookie(undefined, 'matricula.token', event.college_id, {
                 maxAge: 60 * 10 * 1, // 10 m
             })
             userouter.push('/signUp/verifyCode/')

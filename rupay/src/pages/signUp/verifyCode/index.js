@@ -3,14 +3,14 @@ import { ButtonConfirm, InputCode, ButtonBack, Form, DigiteOCdigo, HeadChild, Ru
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { destroyCookie, parseCookies } from "nookies";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { api } from "@/services/axiosClient";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 
 const creatcodeSchema = z.object({
-    codigo: z.string().nonempty("O código é obrigatorio").min(9, "O código deve ter 9 caracteres"),
+    codigo: z.string().nonempty("O código é obrigatorio").min(5, "O código deve ter 5 caracteres"),
 })
 
 export default function VerifyCode() {
@@ -21,7 +21,7 @@ export default function VerifyCode() {
 
     async function userVerficarCodigo(event) {
         const {['matricula.token']: token}= parseCookies()
-        const data = await api.get('/access?collegeId='+ token +'&code='+event.codigo)
+        const data = await api.post('/auth/request-access?college_id='+token+'&access_code='+event.codigo)
         .then((r) => {
             toast.success("Usuario verificado com sucesso",{
                 position:"bottom-center",
@@ -41,10 +41,14 @@ export default function VerifyCode() {
                 pauseOnHover: true,
                 draggable: true,
         })})
-    if(data){
-        destroyCookie(undefined, 'matricula.token')
-        userouter.push('/login')
-    }
+        if(data){
+            setCookie(undefined, 'session', data, {
+                maxAge: 60 * 60 * 1, // 1 hour
+            })
+            api.defaults.headers['Authorization'] = `${data.token}`
+            destroyCookie(undefined, 'matricula.token')
+            userouter.push('/login')
+        }
     }
 
     return (
@@ -88,3 +92,12 @@ export default function VerifyCode() {
     </ConfirmaoRoot>
   );
 };
+
+
+// fetch('http://localhost:8000/auth/request-access?college_id='+token+'&access_code='+event.codigo,{
+//             method: 'POST',
+//             headers: {
+//                 "Access-Control-Allow-Origin": "http://localhost:3000"
+//             },
+//             withCredentials: true,
+//         })
