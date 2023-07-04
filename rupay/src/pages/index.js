@@ -3,13 +3,23 @@ import {ButtonColocar, ButtonConsultar, ButtonSair, NomeUsuario, SeuSaldo, Valor
 import { parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
 import { api } from "@/services/axiosClient";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
+import { getApiClient } from "@/services/axiosServer";
 
 
 
 export default function Home({res}) {
   const {logout} = useContext(AuthContext)
+  // const {['session']: token} = parseCookies()
+  // useEffect(() => {
+  //   const {sub} = jwt_decode(token)
+  //   const {college_id} = sub
+  
+  //   const data =  api.get('/user/'+ college_id).then(response => response.json()).catch(err => console.log(err));
+
+
+  // }, []);
  
   return (
     <PginaInicialRoot>
@@ -59,6 +69,8 @@ export default function Home({res}) {
 
 export async function getServerSideProps(ctx){
   const {['session']: token} = parseCookies(ctx)
+  const apiClient = getApiClient(ctx)
+
   
   if(!token){
     return{
@@ -68,20 +80,15 @@ export async function getServerSideProps(ctx){
       }
     }
   }
-
-
+  
   const {sub} = jwt_decode(token)
-  const college_id = sub.slice(16,25)
+  const {college_id} = sub
+    
+  const data = await apiClient.get('/user/'+ college_id).then(response => response.json()).catch(err => console.log(err));
 
-  const data = await fetch('http://localhost:8000/user/'+ college_id,{
-    method: 'GET',
-    headers: {
-      'Authorization': token
-    }
-  }).then(response => response.json()).catch(err => console.log(err));
 
-  const res = data
-  console.log(res)
+  // const res = data
+  // console.log(res)
   return	{
     props: {}
   }

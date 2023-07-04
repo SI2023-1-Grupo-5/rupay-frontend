@@ -23,6 +23,7 @@ export function AuthProvider({ children }) {
         console.log(data)
         if(data.status === 200){
             setCookie(undefined, 'session', data.data)
+            api.defaults.headers['Authorization'] = `${data.data}`;
             Router.push('/')
         }else{
             alert('Matricula ou senha inválida')
