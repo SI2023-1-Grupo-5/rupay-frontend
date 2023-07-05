@@ -10,7 +10,6 @@ import { setCookie } from 'nookies';
 
 const creatUserSchema = z.object({
     name: z.string().nonempty("O nome é obrigatorio"),
-    email: z.string().nonempty("O email é obrigatorio").email("O email deve ser valido"),
     college_id: z.string().nonempty("A matrícula é obrigatoria").min(9, "A matrícula deve ter 9 caracteres"),
     password: z.string().nonempty("A senha é obrigatoria").min(8, "A senha deve ter no minimo 8 caracteres"),
     password_confirm: z.string().nonempty("A senha é obrigatoria").min(8, "A senha deve ter no minimo 8 caracteres"),
@@ -82,17 +81,6 @@ export default function SingUp() {
                     error={!!errors.name}
                     helperText={errors?.name?.message}
                     {...register('name')}
-                />
-                <InputMatricula
-                    fullWidth
-                    color="secondary"
-                    variant="outlined"
-                    type='email'
-                    label="Insira seu E-mail"
-                    size="large"
-                    error={!!errors.email}
-                    helperText={errors?.email?.message}
-                    {...register('email')}
                 />
                 <InputMatricula
                     fullWidth

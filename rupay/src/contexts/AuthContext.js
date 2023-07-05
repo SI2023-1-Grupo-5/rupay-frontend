@@ -1,5 +1,4 @@
-// import { api } from "@/services/axiosClient";
-import axios from 'axios';
+import { api } from "@/services/axiosClient";
 import { createContext, useState } from "react";
 import {destroyCookie, setCookie} from 'nookies'
 import Router from "next/router";
@@ -17,7 +16,7 @@ export function AuthProvider({ children }) {
       }
 
     async function signIn({matricula, senha}) {
-        const status = await axios.post('http://localhost:8000/auth/login',{
+        const status = await api.post('/auth/login',{
             college_id: matricula,
             password: senha
         },

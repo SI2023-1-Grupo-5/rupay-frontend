@@ -13,15 +13,17 @@ import Cookies from 'js-cookie';
 export default function Home() {
   const {logout} = useContext(AuthContext)
   // const {['session']: token} = parseCookies()
+  
   const [res, setRes] = useState({
     name: '',
     balance: '',
     email: ''
   })
-  const { balance, email } = res;
+
   useEffect(() => {
     // const {sub} = jwt_decode(token)
     const token = Cookies.get('session')
+
     const college_id = jwt_decode(token).sub.slice(16, 25)
   
     async function fetchData(){
@@ -62,7 +64,7 @@ export default function Home() {
         size="large"
         variant="contained"
         name="buttun_colocar"
-        href="/colocar-crditos"
+        href="/Pay"
       >
         Colocar créditos
       </ButtonColocar>
