@@ -18,6 +18,7 @@
     "@mui/material": "^5.13.6",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
+    "cookies-next": "^2.1.2",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "install": "^0.13.0",

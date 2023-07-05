@@ -19,7 +19,6 @@ import {
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import { api } from "@/services/axiosClient";
-import { comment } from "postcss";
 import Link from "next/link.js";
 
 
@@ -30,7 +29,7 @@ export default function Comments() {
     const token = Cookies.get("session");
     async function fetchComments() {
       const comments = await api
-        .get("/comment/today", {
+        .get("/comment/today/ceilandia", {
           headers: {
             Authorization: `${token}`,
           },
@@ -59,7 +58,7 @@ export default function Comments() {
         <Rupay>RUPay</Rupay>
       </Head>
       {comments.map((comment) => (
-        <Comentario>
+        <Comentario key={1}>
         <HeadComentario>
           <NameUser>{comment.author}</NameUser>
           <Stars
@@ -85,30 +84,6 @@ export default function Comments() {
       </Comentario>
         
       ))}
-      
-
-      {/* <Comentario>
-        <HeadComentario>
-          <NameUser>Mateus Tavares</NameUser>
-          <Stars
-            alt="stars"
-            size="small"
-            value={3}
-            emptyIcon={
-              <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-            }
-          />
-        </HeadComentario>
-
-        <Texto>
-          <TextoComentario>A comida hoje estava sem sal :(</TextoComentario>
-        </Texto>
-
-        <Data>
-          <Hora>12:50</Hora>
-          <Dia>10/04/2023</Dia>
-        </Data>
-      </Comentario> */}
     </ComentriosRoot>
   );
 }

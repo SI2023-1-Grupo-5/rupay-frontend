@@ -4,6 +4,13 @@ import {FazerComentrioRoot, FormComentario, Head, Rupay, LogoRupayIcon, AvalieAR
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
+import { api } from "@/services/axiosClient.js";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router.js";
+
+
 
 const creatUserSchema = z.object({
     comentario: z.string().min(3, 'No minimo 3 letras').max(1000).nonempty("O Comentario não pode ser vazio"),
@@ -15,16 +22,37 @@ export default function MakeComment(){
   const { register, handleSubmit, formState: { errors },setValue } = useForm({
     resolver: zodResolver(creatUserSchema)
 })
+  const userouter = useRouter()
 
 async function makeComment(event) {
-    const {['RUpay.token']: token} = parseCookies(ctx)
-    const {matricula} = jwt_decode(token)
+  const token = Cookies.get("session");
+  const college_id = jwt_decode(token).sub.slice(16, 25);
   
     const  {stars, comentario} = event
     const data = await api.post('/comment', {
         "content": comentario,
         "rating": stars,
-        "user_college_id": matricula
+        "user_college_id": college_id,
+        "campus": "ceilandia"
+    }).then((response) => {
+      toast.success("Pagamento realizado com sucesso", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      }),
+      userouter.push("/comments")
+    }).catch((error) => {
+        toast.error("Erro ao realizar o pagamento", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      })
     })
 }
 

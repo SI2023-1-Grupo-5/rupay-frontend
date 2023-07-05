@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
     const isAuthenticated = !!user;
 
     const logout = () => {
-        destroyCookie(undefined, 'RUpay.token')
+        destroyCookie(undefined, 'session')
         console.log('Logged out. Redirecting')
         Router.push('/login')
       }

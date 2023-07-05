@@ -1,19 +1,18 @@
 import Link from "next/link";
 import {ButtonColocar, ButtonConsultar, ButtonSair, NomeUsuario, SeuSaldo, ValorSaldo, UserSection, Rupay, Head, PginaInicialRoot, Logo } from "./style";
-// import { parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
 import { api } from "@/services/axiosClient";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
-import { getApiClient } from "@/services/axiosServer";
+// import { getApiClient } from "@/services/axiosServer";
 import Cookies from 'js-cookie';
+import { useRouter } from "next/router";
 
 
 
 export default function Home() {
-  const {logout} = useContext(AuthContext)
-  // const {['session']: token} = parseCookies()
-  
+  const userouter = useRouter()
+  const {logout} = useContext(AuthContext)  
   const [res, setRes] = useState({
     name: '',
     balance: '',
@@ -21,9 +20,12 @@ export default function Home() {
   })
 
   useEffect(() => {
-    // const {sub} = jwt_decode(token)
     const token = Cookies.get('session')
-
+    console.log(token)
+    if(!token){
+      console.log('não tem token')
+      userouter.push('/login')
+    }
     const college_id = jwt_decode(token).sub.slice(16, 25)
   
     async function fetchData(){
