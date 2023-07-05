@@ -17,11 +17,9 @@ import {
   Stars,
 } from "./style.js";
 import { useEffect, useState } from "react";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { api } from "@/services/axiosClient";
 import Link from "next/link.js";
-
-
 
 export default function Comments() {
   const [comments, setComments] = useState([]);
@@ -37,21 +35,17 @@ export default function Comments() {
         .then((response) => response.data)
         .catch((err) => console.log(err));
 
-        setComments(comments);
-        console.log(comments);
-
-
+      setComments(comments);
     }
 
     fetchComments();
   }, []);
 
-  
   return (
     <ComentriosRoot>
       <Head>
         <Link href={"/"}>
-        <ButtonBack fontSize="large" />
+          <ButtonBack fontSize="large" />
         </Link>
 
         <LogoRupayIcon alt="logo" src="/logo_rupay.svg" />
@@ -59,30 +53,27 @@ export default function Comments() {
       </Head>
       {comments.map((comment) => (
         <Comentario key={1}>
-        <HeadComentario>
-          <NameUser>{comment.author}</NameUser>
-          <Stars
-            alt="stars"
-            size="small"
-            value={comment.rating}
-            emptyIcon={
-              <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-            }
-          />
-        </HeadComentario>
+          <HeadComentario>
+            <NameUser>{comment.author}</NameUser>
+            <Stars
+              alt="stars"
+              size="small"
+              value={comment.rating}
+              emptyIcon={
+                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+              }
+            />
+          </HeadComentario>
 
-        <Texto>
-          <TextoComentario>
-            {comment.content}
-          </TextoComentario>
-        </Texto>
+          <Texto>
+            <TextoComentario>{comment.content}</TextoComentario>
+          </Texto>
 
-        <Data>
-          <Hora>{comment.created_at_time}</Hora>
-          <Dia>{comment.created_at_day}</Dia>
-        </Data>
-      </Comentario>
-        
+          <Data>
+            <Hora>{comment.created_at_time}</Hora>
+            <Dia>{comment.created_at_day}</Dia>
+          </Data>
+        </Comentario>
       ))}
     </ComentriosRoot>
   );

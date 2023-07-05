@@ -20,7 +20,7 @@ const Dia = styled('p')`
 `;
 const Data = styled('section')`
     width: 112px;
-    height: 15px;
+    height: 25px;
     text-align: left;
     font-size: var(--font-size-2xs);
     font-family: var(--font-inter);

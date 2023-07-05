@@ -39,7 +39,7 @@ async function makeComment(event) {
         "user_college_id": college_id,
         "campus": CAMPUS[faculdadeId]
     }).then((response) => {
-      toast.success("Pagamento realizado com sucesso", {
+      toast.success("Comentário realizado com sucesso!", {
         position: "bottom-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -49,7 +49,7 @@ async function makeComment(event) {
       }),
       userouter.push(`/consultMenu/menu/${faculdadeId}/comments`)
     }).catch((error) => {
-        toast.error("Erro ao realizar o pagamento", {
+        toast.error("Erro ao realizar o comentário!", {
         position: "bottom-center",
         autoClose: 3000,
         hideProgressBar: false,

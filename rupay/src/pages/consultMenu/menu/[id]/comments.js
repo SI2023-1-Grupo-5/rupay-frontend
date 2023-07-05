@@ -22,6 +22,7 @@ import { api } from "@/services/axiosClient";
 import Link from "next/link.js";
 import { useRouter } from "next/router.js";
 
+
 const CAMPUS = {"4":'planaltina', "1":'darcy',"2":'ceilandia', "3":'gama'}
 
 export default function Comments() {
@@ -41,7 +42,6 @@ export default function Comments() {
         .catch((err) => console.log(err));
 
         setComments(comments);
-        console.log(comments);
 
 
     }
@@ -53,7 +53,7 @@ export default function Comments() {
   return (
     <ComentriosRoot>
       <Head>
-        <Link href={"/"}>
+        <Link href={"/consultMenu"}>
         <ButtonBack fontSize="large" />
         </Link>
 
@@ -81,7 +81,8 @@ export default function Comments() {
         </Texto>
 
         <Data>
-          <Hora>{comment.created_at_time}</Hora>
+          <Hora> {comment.created_at_time}</Hora>
+          <div></div>
           <Dia>{comment.created_at_day}</Dia>
         </Data>
       </Comentario>
