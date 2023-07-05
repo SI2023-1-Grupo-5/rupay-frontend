@@ -8,7 +8,8 @@ import { AuthContext } from '@/contexts/AuthContext';
 
 const creatUserSchema = z.object({
   matricula: z.string().nonempty("A matrícula é obrigatoria").min(9, "A matrícula deve ter 9 caracteres"),
-  senha: z.string().nonempty("A senha é obrigatoria").min(8, "A senha deve ter no minimo 8 caracteres"),
+  senha: z.string().nonempty("A senha é obrigatoria")
+  // .min(8, "A senha deve ter no minimo 8 caracteres"),
 })
 
 export default function Login(){
