@@ -16,14 +16,13 @@ export function AuthProvider({ children }) {
       }
 
     async function signIn({matricula, senha}) {
-        const data = await api.post('/auth/login',{
+        const status = await api.post('/auth/login',{
             college_id: matricula,
             password: senha
-        }).then().catch(err => console.log(err));
-        console.log(data)
-        if(data.status === 200){
-            setCookie(undefined, 'session', data.data)
-            api.defaults.headers['Authorization'] = `${data.data}`;
+        },
+        { withCredentials: true }
+        ).then(response => response.status).catch(err => console.log(err));
+        if(status === 200){
             Router.push('/')
         }else{
             alert('Matricula ou senha inválida')

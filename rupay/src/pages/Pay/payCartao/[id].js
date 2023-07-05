@@ -6,6 +6,8 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import { api } from '@/services/axiosClient';
 import {useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
+import jwt_decode from "jwt-decode";
 
 
 const creatUserSchema = z.object({
@@ -23,7 +25,27 @@ export default function SingUp() {
     const userouter = useRouter()
 
     async function userPay(event) {
-        console.log(event)
+        const pathname = window.location.pathname;
+        const value = pathname.split("/")[3]
+        console.log(value)
+
+        const token = Cookies.get('session')
+        const college_id = jwt_decode(token).sub.slice(16, 25)
+
+        await api.put('/payment/card/'+ college_id,
+        {
+            "number": "string",
+            "name": "string",
+            "security_code": "string",
+            "date": "2023-07-05",
+            "value": parseInt(value)
+          },
+        {
+          headers: {
+            Authorization: `${token}`
+          }
+        }
+        ).then().catch(err => console.log(err));
     }
 
     return (
