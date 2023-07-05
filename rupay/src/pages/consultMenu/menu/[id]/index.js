@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {CardpioRoot, Head, HeadChild, Rupay, Cardapio, ButtonBaixar, ButtonComentar, ButtonComentarios, ButtonBack, AlignButtons,Title} from "./style.js";
+import {CardpioRoot, Head, HeadChild, Rupay, Cardapio, ButtonBaixar, ButtonComentar, ButtonComentarios, ButtonBack, AlignButtons,Title} from "../style.js";
 import { api } from "@/services/axiosClient.js";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
@@ -50,7 +50,7 @@ export default function Menu() {
               Baixar PDF
               </ButtonBaixar>
             </Link>
-            <Link href="/makeComments">
+            <Link href={+menu.id+"/makeComments"}>
               <ButtonComentar
               sx={{ width: 300 }}
               variant="contained"
@@ -60,7 +60,7 @@ export default function Menu() {
               Fazer um comentário
               </ButtonComentar>
             </Link>
-            <Link href="/comments">
+            <Link href={+menu.id+"/comments"}>
               <ButtonComentarios
               sx={{ width: 300 }}
               variant="contained"
